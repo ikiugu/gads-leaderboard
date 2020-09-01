@@ -13,7 +13,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        // setContentView(R.layout.activity_splash_screen); no need for a view, the OS will handle this
 
         // use a timer to show the splash screen...frowned upon but it works 🤷‍♂️
         new Handler().postDelayed(new Runnable() {
