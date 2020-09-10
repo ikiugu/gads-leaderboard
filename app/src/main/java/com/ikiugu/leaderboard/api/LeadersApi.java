@@ -1,7 +1,7 @@
 package com.ikiugu.leaderboard.api;
 
-import com.ikiugu.leaderboard.models.LearningLeadersResponse;
-import com.ikiugu.leaderboard.models.SkillIQResponse;
+import com.ikiugu.leaderboard.db.LearningLeader;
+import com.ikiugu.leaderboard.db.SkillIQ;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import retrofit2.http.GET;
 
 public interface LeadersApi {
     @GET("/api/hours")
-    Call<List<LearningLeadersResponse>> getLearners();
+    Call<List<LearningLeader>> getLearners();
 
     @GET("/api/skilliq")
-    Call<List<SkillIQResponse>> getSkillIQ();
+    Call<List<SkillIQ>> getSkillIQ();
 }
