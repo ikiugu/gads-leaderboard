@@ -16,4 +16,7 @@ public interface LearningLeadersDAO {
 
     @Query("SELECT * FROM learningLeaders")
     LiveData<List<LearningLeader>> getAllLearningLeaders();
+
+    @Query("DELETE FROM learningLeaders")
+    void deleteAllLearners();
 }

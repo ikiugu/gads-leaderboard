@@ -67,6 +67,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         leaderBoardClient.getLeaderBoardResults().getLearners().enqueue(new Callback<List<LearningLeader>>() {
             @Override
             public void onResponse(Call<List<LearningLeader>> call, Response<List<LearningLeader>> response) {
+
+
+
                 LearningLeader[] learningLeaders = response.body().toArray(new LearningLeader[response.body().size()]);
                 gadsViewModel.insertLeaders(learningLeaders);
             }

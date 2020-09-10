@@ -15,4 +15,7 @@ public interface SkillIqDAO {
 
     @Query("Select * from skills")
     LiveData<List<SkillIQ>> getAllSkillIQ();
+
+    @Query("DELETE FROM skills")
+    void deleteAllIQ();
 }
