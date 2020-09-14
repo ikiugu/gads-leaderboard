@@ -21,7 +21,6 @@ import java.util.List;
 
 public class LearningFragment extends Fragment {
 
-    private GadsViewModel gadsViewModel;
     RecyclerView recyclerView;
     LearningLeadersAdapter learningLeadersAdapter;
 
@@ -52,7 +51,7 @@ public class LearningFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        gadsViewModel = ViewModelProviders.of(this).get(GadsViewModel.class);
+        GadsViewModel gadsViewModel = ViewModelProviders.of(this).get(GadsViewModel.class);
         gadsViewModel.getLearningLeaders().observe(getViewLifecycleOwner(), new Observer<List<LearningLeader>>() {
             @Override
             public void onChanged(List<LearningLeader> learningLeaders) {

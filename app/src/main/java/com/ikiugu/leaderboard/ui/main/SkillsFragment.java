@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -22,11 +21,8 @@ import java.util.List;
 
 public class SkillsFragment extends Fragment {
 
-    private GadsViewModel gadsViewModel;
     RecyclerView recyclerView;
     SkillIQAdapter skillIQAdapter;
-
-    private TextView textView;
 
     public SkillsFragment() {
     }
@@ -53,7 +49,7 @@ public class SkillsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        gadsViewModel = ViewModelProviders.of(this).get(GadsViewModel.class);
+        GadsViewModel gadsViewModel = ViewModelProviders.of(this).get(GadsViewModel.class);
 
         gadsViewModel.getSkillIQs().observe(getViewLifecycleOwner(), new Observer<List<SkillIQ>>() {
             @Override
