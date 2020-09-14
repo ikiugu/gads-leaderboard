@@ -10,15 +10,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ikiugu.leaderboard.R;
+import com.ikiugu.leaderboard.adapters.SkillIQAdapter;
 import com.ikiugu.leaderboard.db.SkillIQ;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SkillsFragment extends Fragment {
 
     private GadsViewModel gadsViewModel;
+    RecyclerView recyclerView;
+    SkillIQAdapter skillIQAdapter;
 
     private TextView textView;
 
@@ -38,7 +44,9 @@ public class SkillsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_skills, container, false);
-        textView = view.findViewById(R.id.textView4);
+        recyclerView = view.findViewById(R.id.skillsRecyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
         return view;
     }
 
@@ -47,10 +55,12 @@ public class SkillsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         gadsViewModel = ViewModelProviders.of(this).get(GadsViewModel.class);
 
-        gadsViewModel.getSkillIQs().observe(getActivity(), new Observer<List<SkillIQ>>() {
+        gadsViewModel.getSkillIQs().observe(getViewLifecycleOwner(), new Observer<List<SkillIQ>>() {
             @Override
             public void onChanged(List<SkillIQ> skillIQS) {
-                textView.setText("Total records are " + skillIQS.size());
+                ArrayList<SkillIQ> skillIQArrayList = (ArrayList<SkillIQ>) skillIQS;
+                skillIQAdapter = new SkillIQAdapter(skillIQArrayList);
+                recyclerView.setAdapter(skillIQAdapter);
             }
         });
     }
