@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.ikiugu.leaderboard.api.LeaderBoardClient;
+import com.ikiugu.leaderboard.api.GadsClient;
 import com.ikiugu.leaderboard.db.LearningLeader;
 import com.ikiugu.leaderboard.db.SkillIQ;
 import com.ikiugu.leaderboard.ui.main.GadsViewModel;
@@ -22,7 +22,7 @@ import retrofit2.Response;
 public class SplashScreenActivity extends AppCompatActivity {
 
     public static int SPLASH_SCREEN_TIME_OUT = 2500;
-    private LeaderBoardClient leaderBoardClient;
+    private GadsClient leaderBoardClient;
     private GadsViewModel gadsViewModel;
 
     @Override
@@ -33,7 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         gadsViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication()))
                 .get(GadsViewModel.class);
 
-        leaderBoardClient = LeaderBoardClient.getInstance();
+        leaderBoardClient = GadsClient.getInstance();
 
         getLearnersLeaderBoard();
 

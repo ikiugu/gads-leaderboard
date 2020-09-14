@@ -13,10 +13,10 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LeaderBoardClient {
+public class GadsClient {
     private static final String GADS_URL = "https://gadsapi.herokuapp.com/";
 
-    private static LeaderBoardClient mInstance;
+    private static GadsClient mInstance;
     private Retrofit leaderRetrofit;
 
     public static OkHttpClient.Builder getUnsafeOkHttpClient() {
@@ -60,7 +60,7 @@ public class LeaderBoardClient {
         }
     }
 
-    public LeaderBoardClient() {
+    public GadsClient() {
         leaderRetrofit = new Retrofit.Builder()
                 .baseUrl(GADS_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -68,14 +68,14 @@ public class LeaderBoardClient {
                 .build();
     }
 
-    public static synchronized LeaderBoardClient getInstance() {
+    public static synchronized GadsClient getInstance() {
         if (mInstance == null) {
-            mInstance = new LeaderBoardClient();
+            mInstance = new GadsClient();
         }
         return mInstance;
     }
 
-    public LeadersApi getLeaderBoardResults() {
-        return leaderRetrofit.create(LeadersApi.class);
+    public GadsApi getLeaderBoardResults() {
+        return leaderRetrofit.create(GadsApi.class);
     }
 }
