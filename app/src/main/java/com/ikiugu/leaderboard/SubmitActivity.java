@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ikiugu.leaderboard.api.GadsApi;
+import com.ikiugu.leaderboard.api.GoogleClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,12 +23,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SubmitActivity extends AppCompatActivity {
 
-    Button submitButton;
+    private Button submitButton;
+    private GoogleClient googleClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit);
+
+        googleClient = GoogleClient.getInstance();
 
         submitButton = findViewById(R.id.submit_project_button);
 
@@ -76,7 +80,7 @@ public class SubmitActivity extends AppCompatActivity {
                         githubLink = txtGithubLink.getText().toString().trim();
 
 
-                        request.sendProjectDetails(firstName, lastName, emailAddress, githubLink)
+                        googleClient.googleApi().sendProjectDetails(firstName, lastName, emailAddress, githubLink)
                                 .enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
